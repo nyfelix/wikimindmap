@@ -21,3 +21,5 @@ The current Release of WikiMindMap was developed with:
 - Apache 2.2
 - PHP 5.2
 - Flash 10.0
+
+!!! FOR MORE INFORMATION SEE README.txt IN THE ROOT OF THIS PROJECT !!!

@@ -6,7 +6,7 @@
 Author:
 Felix Nyffenegger, Nova Innovation Solutions GmbH (www.nova-innovation.com)
 
-Copyright (c) 2007 by Nova Innovation Solutions GmbH
+Copyright (c) 2009 by Nova Innovation Solutions GmbH
 Licence: GNU GPL Version 3
 
 ============================================================================
@@ -56,7 +56,7 @@ WikiMindMap requires the following Components:
 --------------
 
 This packages contains the follwing files and folders:
-   /MindMapBrowser                  : COntains the Sourcefiles of the flash browser
+   /actionscript/MindMapBrowser     : Contains the Sourcefiles of the flash browser
    /public	                    : Contains all files needed to run WikiMindMap
    /public/getpages.php		    : This is the core of WikiMindMap
    /public/visorFreemind.swf	    : The binary of the flash browser
