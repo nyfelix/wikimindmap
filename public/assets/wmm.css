@@ -1,0 +1,11 @@
+.menuText {font-size: 14px}
+.footerText {font-size: 10px}
+.bar {
+	background-color:#C9D7F1;
+	border-top-color:#000099;
+}
+body {
+	background-color: #FFFFFF;
+	font-size : 14px;
+	font-family : Arial,Helvetica,sans-serif;
+}
