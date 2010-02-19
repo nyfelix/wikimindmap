@@ -75,9 +75,14 @@
 	curl_setopt ($ch, CURLOPT_URL, $url);
 	curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+	// spoofing FireFox 2.0 
+	$useragent=$_SERVER['HTTP_USER_AGENT'];
+	// set user agent 
+	curl_setopt($ch, CURLOPT_USERAGENT, $useragent); 
+	// set the rest of your cURL options here 
 	$contents = curl_exec($ch);
 	curl_close($ch);
-
+	
 	// Decode from UTF-8
 	$contents = utf8_decode($contents);
 
