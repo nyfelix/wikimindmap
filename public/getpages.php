@@ -72,14 +72,12 @@
 
 	$ch = curl_init();
 	$timeout = 5; // set to zero for no timeout
+	$useragent=$_SERVER['HTTP_USER_AGENT']; // get user agent
 	curl_setopt ($ch, CURLOPT_URL, $url);
 	curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-	// spoofing FireFox 2.0 
-	$useragent=$_SERVER['HTTP_USER_AGENT'];
-	// set user agent 
 	curl_setopt($ch, CURLOPT_USERAGENT, $useragent); 
-	// set the rest of your cURL options here 
+
 	$contents = curl_exec($ch);
 	curl_close($ch);
 	
