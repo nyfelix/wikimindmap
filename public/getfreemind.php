@@ -31,11 +31,11 @@
 	//echo $topic;
 	$topic = urldecode($topic);
 	$topic = str_replace(" ", "_", $topic);
-	
+
 	//Wiki specific Variables
 	$index_path = "";
 	$access_path = "";
-	
+
 	switch ($wiki) {
 		case "www.self-qs.de":
 			$index_path = "";
@@ -46,8 +46,8 @@
 			$access_path = "/wiki";
 			break;
 	}
-	
-	$url = 'http://'.$wiki.$index_path.'/index.php?title='.$topic.'&action=raw'; 
+
+	$url = 'http://'.$wiki.$index_path.'/index.php?title='.$topic.'&action=raw';
 	//-------------------------------------------------------------------------------------------
 	// Defaults for the Parser
 	//-------------------------------------------------------------------------------------------
@@ -62,9 +62,9 @@
 	$linkEnd 	 = ']]';
 	$wwwLinkStart = '[http:';
 	$wwwLinkEnd   = ']';
-	
+
 	//echo $topic;
-	
+
 	//-------------------------------------------------------------------------------------------
  	// Extract the main Topic from the Wikki
 	// This code works only for mediawiki type of wikis later following changes are to be done:
@@ -79,12 +79,17 @@
 	curl_setopt ($ch, CURLOPT_URL, $url);
 	curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+	// spoofing FireFox 2.0
+	$useragent=$_SERVER['HTTP_USER_AGENT'];
+	// set user agent
+	curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+	// set the rest of your cURL options here
 	$contents = curl_exec($ch);
-	curl_close($ch);	
-	
+	curl_close($ch);
+
 	// Decode from UTF-8
 	$contents = utf8_decode($contents);
-	
+
 	$contents = removeComments($contents);
 	$contents = removeClassInfo($contents);
 
@@ -94,7 +99,7 @@
 
 	$i=0;
 	$link[0][0] = "";
-	
+
 	echo "<map version=\"0.8.0\">\n";
 #echo'<edge STYLE="bezier"/>\n';
 	$wikilink  = 'http://'.$wiki.'/wiki/'.$topic;
@@ -106,17 +111,18 @@
 	$wikilink = preg_replace("/\n&/", "%26", $wikilink);
 	$tooltip = preg_replace("/[\n&]/", "%26", $tooltip);
 	$wikilink = trim($wikilink);
-	echo '<node TEXT="'.$topic.'" LINK = "'.$wikilink.'" TOOLTIPTEXT = "'.$tooltip."\">\n";
+	$cleanedTopic = cleanText($topic);
+	echo '<node TEXT="'.$cleanedTopic.'" LINK = "'.$wikilink.'" TOOLTIPTEXT = "'.$tooltip."\">\n";
 	//echo '<node STYLE="bubble" TEXT="Main">/n';
 #	echo '<edge STYLE="sharp_bezier" WIDTH="2"/>\n';
 
 	$openChap = FALSE;
 	$openSubChap = FALSE;
 	$counter = 0;
-	
-	while (strpos($contents,$linkStart) > -1 || 
-	       strpos($contents,$wwwLinkStart) > -1 || 
-		   strpos($contents,$chapStart) > -1 || 
+
+	while (strpos($contents,$linkStart) > -1 ||
+	       strpos($contents,$wwwLinkStart) > -1 ||
+		   strpos($contents,$chapStart) > -1 ||
 		   strpos($contents,$subChapStart) > -1)
 	{
 		$counter++;
@@ -126,7 +132,7 @@
 		$iSubChap = strpos($contents, $subChapStart);
 		$iLink = strpos($contents, $linkStart);
 		$iWwwLink = strpos($contents, $wwwLinkStart);
-		
+
 		//echo '<br>Chap: '.$iChap.' Link:'.$iLink.' WWW:'.$iWwwLink.'<br>';
 
 		//-----------------------------------------
@@ -152,19 +158,19 @@
 					echo "</node>\n";
 					$openChap = FALSE;
 				}
-				
+
 				// Filter all the Tag information
 				$Chap  = str_replace($linkStart,"", $Chap);
 				$Chap  = str_replace($chapEnd,"", $Chap);
 				$Chap  = str_replace("=","", $Chap);
-				
-				
+
+
 				// Create Topic
 				$wChap = str_replace(" ","_", $Chap);
 				$wChap = trim($wChap, "_");
 				$ttorg = substr($contents,strpos($contents,$chapEnd)+2, 500);
 				$tooltip = createToolTipText($ttorg, 150);
-				
+
 				$wikilink  = 'http://'.$wiki.$access_path.'/'.$topic.'#'.$wChap;
 				$wikilink = preg_replace("/[\n&]/", "%26", cleanWikiLink($wikilink));
 				$Chap = preg_replace("/[\n&]/", "%26", cleanText($Chap));
@@ -173,14 +179,14 @@
 				//echo  '<node TEXT="'.cleanText($Chap).'" WIKILINK = "'.cleanWikiLink($wikilink).'"  STYLE="bubble">/n';
 				//echo 'node TEXT="'.$Chap.'" STYLE="bubble"><br>';
 				$openChap = TRUE;
-				
+
 			}
-			
+
 			$contents = strstr($contents,$chapEnd);
 			$contents = substr($contents, strlen($chapEnd));
-			
+
 		}
-		
+
 		//-----------------------------------------
 		// Create SubChapter Nodes
 		//-----------------------------------------
@@ -199,18 +205,18 @@
 					echo "</node>\n";
 					$openSubChap = FALSE;
 				}
-				
+
 				// Filter all the Tag information
 				$SubChap  = str_replace($linkStart,"", $SubChap);
 				//$SubChap  = str_replace($chapEnd,"", $SubChap);
 				$SubChap  = str_replace("=","", $SubChap);
-				
+
 				// Create Topic
 				$wSubChap = str_replace(" ","_", $SubChap);
 				$wSubChap = trim($wSubChap, "_");
 				$ttorg = substr($contents,strpos($contents,$subChapEnd)+3, 500);
 				//$tooltip = createToolTipText($ttorg, 150);
-				
+
 				$wikilink  = 'http://'.$wiki.$access_path.'/'.$topic.'#'.$wSubChap;
 				$wikilink = preg_replace("/[\n&]/", "%26", cleanWikiLink($wikilink));
 				$SubChap = preg_replace("/[\n&]/", "%26", cleanText($SubChap));
@@ -220,18 +226,18 @@
 				//echo 'node TEXT="'.$Chap.'" STYLE="bubble"><br>';
 				$openSubChap = TRUE;
 			}
-			
+
 			$contents = strstr($contents,$subChapEnd);
 			$contents = substr($contents, strlen($subChapEnd));
-		}		
-		
-		
+		}
+
+
 		//-----------------------------------------
 		// Create WWW Link Nodes
 		//-----------------------------------------
 		if ($iWwwLink > -1 && ($iWwwLink < $iLink || !$iLink) && ($iWwwLink < $iChap || !$iChap) && ($iWwwLink < $iSubChap || !$iSubChap))
 		{
-		
+
 			$contents = strstr($contents, $wwwLinkStart);
 			$contents = substr($contents, strlen($wwwLinkStart));
 			$wwwLink  = substr($contents,0, strpos($contents,$wwwLinkEnd));
@@ -250,14 +256,14 @@
 
 		//-----------------------------------------
 		// Create WikiPage Nodes
-		//-----------------------------------------		
+		//-----------------------------------------
 		if ($iLink > -1 && ($iLink < $iWwwLink || !$iWwwLink) && ($iLink < $iChap || !$iChap) && ($iLink < $iSubChap || !$iSubChap))
 		{
 			$contents = strstr($contents,$linkStart);
 			$tag = substr($contents, strlen($linkStart), strpos($contents, $linkEnd)-strlen($linkStart));
-			
+
 			//echo $tag;
-			
+
 			// Keine Bilder etc...
 			if (strpos($tag, ':') == FALSE)
 			//$tag should be parsed seperately in future (applies for all nodes, end-node and chapter, to do the following things:
@@ -266,7 +272,7 @@
 			// - ...
 			{
 				//No dublicates
-				
+
 				if (in_array($tag, $link[0]) == FALSE)
 				{
 					if (strpos($tag, '|') != FALSE)
@@ -282,7 +288,7 @@
 					}
 					$wikilink    = 'http://'.$wiki.$access_path.'/'.$link[1][$i];
 					$mmlink	 = 'viewmap.php?wiki='.$wiki.'&topic='.$link[1][$i];
-	
+
 					$textTmp = preg_replace("/[\n&]/", "%26", $link[0][$i]);
 					$wikilink = preg_replace("/[\n&]/", "%26", $wikilink);
 					echo '<node TEXT="'.cleanText($textTmp).'" LINK="'.cleanWikiLink($wikilink)."\">\n";
@@ -295,7 +301,7 @@
 			$contents = substr($contents,strlen($linkEnd));
 		}
 	}
-	
+
 	if ($openSubChap == TRUE)
 	{
 		echo "</node>\n";
@@ -304,43 +310,47 @@
 	{
 		echo "</node>\n";
 	}
-	
+
 	echo "</node>\n";
-	echo "</map>\n";		
-	
+	echo "</map>\n";
+
 	$time_end = microtime(true);
 	$time = $time_end-$time_start;
   	//echo '<HTML><p>'.$time.' micro seconds</p><p>Count: '.$counter.'</p></HTML>';
-	
+
     //-------------------------------------------------------------------------------------------
 	// END OF MAIN PROCESS
 	//===========================================================================================
 
-  
+
   	//-------------------------------------------------------------------------------------------
 	// Functions to clean text from special caracters
 	//-------------------------------------------------------------------------------------------
-	
+
   	function cleanText($text) {
 		$trans = array("=" => "", "[" => "", "]" => "", "{" => "", "}" => "", "_" => " ", "'" => "", "|" => "/",  "?" => "", "*" => "-", "\"" => "'");
 		$clean = strtr ($text, $trans);
 		// Experimental remove a lot of reutrns (\n)
 		$transW = array( "\n\n\n" => "");
 		$clean = strtr ($clean, $transW );
+
+		$convmap = array(0x80, 0xff, 0, 0xff);
+ 		$clean = mb_encode_numericentity($clean, $convmap, "ISO-8859-1");
+
 		return $clean;
 	}
-	
+
     function cleanWikiLink($text) {
 		$trans = array("=" => "", "[" => "", "]" => "", "{" => "", "}" => "");
 		$clean = strtr ($text, $trans);
 		return $clean;
 	}
-	  	
+
 	//-------------------------------------------------------------------------------------------
 	// Functions to create ToolTip Text
 	// Strategy: Text until the next chapter starts, but no more than n (100?) characters.
 	//-------------------------------------------------------------------------------------------
-	
+
 	function createToolTipText($text, $len) {
 		global $chapStart;
 		//echo '<br> TTTEXT: '.$text;
@@ -357,7 +367,7 @@
 		//echo $tttext;
 		return $tttext.' [...]';
 	}
-	
+
 	// This alghoritm maybe should by used for all the parsing
 	function removeClassInfo($text)
 	{
@@ -376,19 +386,19 @@
 		}
 		return $text;
 	}
-	
+
 	function removeComments($text)
 	{
-		$cStart = "<"; 
+		$cStart = "<";
 		$cEnd	= ">";
 		$n = strpos($text, $cStart);
-		
+
 		while ($n > -1) {
-			
+
 			$o = strpos($text, $cStart,$n+strlen($cStart));
 			$c = strpos($text, $cEnd,$n+strlen($cStart));
 			if ( $c > -1 && ($c < $o || !$o)) {
-				
+
 				$text = substr_replace($text,"",$n,$c+strlen($cEnd)-$n);
 				$n = strpos($text, $cStart);
 			}
@@ -399,7 +409,7 @@
 		return $text;
 	}
 
-	
+
 	function removeTags($text)
 	{
 		$linkStart = "[";
@@ -414,11 +424,11 @@
 				$spec = strpos($tag,':');
 				if ($spec > -1) {
 					$tag = "";
-					
+
 				}
 				elseif ($s > -1) {
 					$tag = substr($tag,$s+1,strlen($tag)- $s);
-					
+
 				}
 				$text = substr_replace($text,$tag,$n,$c+1-$n);
 				$n = strpos($text, $linkStart);
@@ -427,7 +437,7 @@
 				$n = $o;
 			}
 		}
-		
+
 		return $text;
 	}
 ?>
