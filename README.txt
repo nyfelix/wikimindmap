@@ -60,7 +60,7 @@ This packages contains the follwing files and folders:
    /public	                    : Contains all files needed to run WikiMindMap
    /public/getpages.php		    : This is the core of WikiMindMap
    /public/visorFreemind.swf	    : The binary of the flash browser
-   /public/js/flashobject.js        : Needed by the flahs browser
+   /public/js/flashobject.js        : Needed by the flash browser
 
 To install Wikiminmap, copy the files of subfolder /ServerScripts to any 
 directory of your webserver. And set parameters according to 4.
