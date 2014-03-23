@@ -4,7 +4,7 @@
 
 
 Author:
-Felix Nyffenegger, Nova Innovation Solutions GmbH (www.nova-innovation.com)
+Felix Nyffenegger (twitter:@nyfelix)
 
 Copyright (c) 2009 by Nova Innovation Solutions GmbH
 Licence: GNU GPL Version 3
