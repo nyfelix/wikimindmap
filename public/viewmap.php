@@ -140,7 +140,7 @@ if (isset($_GET["topic"])) {
         <div align="center" class="footerText">
             All content of the mindmap is derived from the wiki selected above and is licensed under the terms of <a href="http://www.gnu.org/copyleft/fdl.html" target="_blank">GNU Free Documentaion Licence</a>. You can retrieve the original material by a left click on the topic.
             <br>
-            Copyright (c) 2007 by Felix Nyffenegger 
+            Copyright (c) 2007 by Felix Nyffenegger, @nyfelix
         </div>
         <p>
             &nbsp;

@@ -3,8 +3,7 @@
                      	     WIKIMINDMAP 1.0
 
 
-Author:
-Felix Nyffenegger (twitter:@nyfelix)
+Author: Felix Nyffenegger (twitter:@nyfelix)
 
 Copyright (c) 2009 by Nova Innovation Solutions GmbH
 Licence: GNU GPL Version 3
