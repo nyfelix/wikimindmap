@@ -1,0 +1,5 @@
+web1: 
+  name: wikimindmap          
+  document_root: public
+  php_version: 5.3.23
+  php_extensions:
