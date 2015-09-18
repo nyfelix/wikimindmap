@@ -89,7 +89,7 @@ class Menu {
 		// generate a menu list
 		_visible=visible
 		GenerateMenu(this,"mainmenu_mc", x, y, depth, menu_xml.firstChild);
-		// close only submenus if visible durring a mouseup
+		// close only submenus if visible during a mouseup
 		// this main menu (mainmenu_mc) will remain
 		mainmenu_mc.onMouseUp = function(){
 			if (mainmenu_mc.submenu_mc &&

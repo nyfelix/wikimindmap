@@ -30,7 +30,7 @@ allways straight forward to find the information you are really looking for.
 This tool aims to support users to get a good structured and easy 
 understandable overview of the topic you are looking for.
 
-WikiMidMap is licenced unter GNU GPL Version 3
+WikiMidMap is licensed unter GNU GPL Version 3
 
 For more information see: http://www.wikimindmap.org
 
@@ -78,7 +78,7 @@ directory of your webserver. And set parameters according to 4.
         //	This settings depend on the media-wiki installation
         //	Please note, that the URL to the wiki is passed from the client via GET method.
         //	If you intend to access more then one wiki, you will have to set these settings, based
-        //	on the wiki you recieved from $_GET['Wiki'].
+        //	on the wiki you received from $_GET['Wiki'].
         //-------------------------------------------------------------------------------------------
 	
 	
