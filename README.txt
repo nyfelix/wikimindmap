@@ -30,7 +30,7 @@ always straightforward to find the information you are really looking for.
 This tool aims to support users to get a good structured and easy 
 understandable overview of the topic you are looking for.
 
-WikiMindMap is licenced unter GNU GPL Version 3
+WikiMindMap is licensed unter GNU GPL Version 3
 
 For more information see: http://www.wikimindmap.org
 

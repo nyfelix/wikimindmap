@@ -131,7 +131,7 @@ class visorFreeMind.Node {
 		coment=coment;
 		listElements=[];
 		num+=4;
-		//creation of asociated movieClip
+		//creation of associated movieClip
 		id=node_xml.attributes.ID?node_xml.attributes.ID:"node_"+num;
 		ref_mc=mc.createEmptyMovieClip(id,num);
 		//ref_mc.trackAsMenu=true;
