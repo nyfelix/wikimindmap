@@ -77,7 +77,7 @@
 	curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 	curl_setopt($ch, CURLOPT_USERAGENT, $useragent); 
-
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	$contents = curl_exec($ch);
 	curl_close($ch);
 	
@@ -86,6 +86,8 @@
 
 	$contents = removeComments($contents);
 	$contents = removeClassInfo($contents);
+
+	//echo "Content:" . $contents;
 
 	//-------------------------------------------------------------------------------------------
 	// Parse the Topicfile to find WikiLinks
