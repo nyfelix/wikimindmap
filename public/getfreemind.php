@@ -266,7 +266,7 @@
 
 			// Keine Bilder etc...
 			if (strpos($tag, ':') == FALSE)
-			//$tag should be parsed seperately in future (applies for all nodes, end-node and chapter, to do the following things:
+			//$tag should be parsed separately in future (applies for all nodes, end-node and chapter, to do the following things:
 			// - if | exists: left part = wikilink, right part = name in text
 			// - if : exists, decide, what to do... (add picture to mindmap?
 			// - ...

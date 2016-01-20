@@ -17,7 +17,7 @@ If you want to see the original version, go to:
 If you want to find out mor about WikiMindMap, go to:
 	 http://www.wikimindmap.org
 
-If you want to know waht the major changes between the two versions are see:
+If you want to know what the major changes between the two versions are see:
 	changes.txt in this directory.
 
 
