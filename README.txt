@@ -24,17 +24,17 @@ Licence: GNU GPL Version 3
 ---------------
 
 WikiMindMap is a tool to browse easily and efficiently in Wiki content, 
-inspired by the mindmap technique. Wiki pages in large public wiki's, 
-such as wikipedia, have become rich and complex documents. Thus, it is not 
-always straightforward to find the information you are really looking for. 
+inspired by the mindmap technique. Wiki pages in large public wikis,
+such as Wikipedia, have become rich and complex documents. Thus, it is not
+always straightforward to find the information you are really looking for.
 This tool aims to support users to get a good structured and easy 
 understandable overview of the topic you are looking for.
 
-WikiMindMap is licenced unter GNU GPL Version 3
+WikiMindMap is licensed unter GNU GPL Version 3
 
 For more information see: http://www.wikimindmap.org
 
-The flashbrowser is an adaped version of the freemind flash browser, written
+The flashbrowser is an adapted version of the freemind flash browser, written
 by Juan Pedro de Andres. For details and source code see subfolder 
 /actionscript/MindMapBrowser
 http://freemind.sourceforge.net/wiki/index.php/Flash_browser
@@ -44,7 +44,7 @@ http://freemind.sourceforge.net/wiki/index.php/Flash_browser
 2. Requirements
 ---------------
 
-WikiMindMap requires the following Components:
+WikiMindMap requires the following components:
 
 - Webserver (e.g. Apache)
 - PHP 5.2   (earlier versions might work, but are not tested)
@@ -52,7 +52,7 @@ WikiMindMap requires the following Components:
 
 
 3. Installation
---------------
+---------------
 
 This packages contains the following files and folders:
    /actionscript/MindMapBrowser     : Contains the Sourcefiles of the flash browser
@@ -61,7 +61,7 @@ This packages contains the following files and folders:
    /public/visorFreemind.swf	    : The binary of the flash browser
    /public/js/flashobject.js        : Needed by the flash browser
 
-To install Wikimindmap, copy the files of subfolder /ServerScripts to any 
+To install WikiMindMap, copy the files of subfolder /ServerScripts to any
 directory of your webserver. And set parameters according to step 4.
 
 4. Configuration
@@ -77,7 +77,7 @@ directory of your webserver. And set parameters according to step 4.
         //	This is the one and only place, where you have to configure something.
         //	These settings depend on the media-wiki installation
         //	Please note, that the URL to the wiki is passed from the client via GET method.
-        //	If you intend to access more then one wiki, you will have to set these settings, based
+        //	If you intend to access more than one wiki, you will have to set these settings, based
         //	on the wiki you received from $_GET['Wiki'].
         //-------------------------------------------------------------------------------------------
 	
@@ -90,14 +90,14 @@ directory of your webserver. And set parameters according to step 4.
         // The URL encodes the path where the raw data of a wiki topic can be accessed.
         $url = 'http://'.$wiki.$index_path.'/index.php?title='.$topic.'&action=raw'; 
 
-   You have to change these settings according to your local wiki-installation. 
-   These values will work with wikipedia. However, for typical media-wiki installations
+   You have to change these settings according to your local wiki installation.
+   These values will work with Wikipedia. However, for typical media-wiki installations
    use the settings, mentioned in the comment.
 
   4.2 Clientside
   --------------
 
-  viewmap.php shows how the flashbrowser is linked to getpages.php to retriev 
+  viewmap.php shows how the flashbrowser is linked to getpages.php to retrieve
   the mindmap data. Most important is the following line, here you tell the server, 
   which topic and which wiki to address:
 

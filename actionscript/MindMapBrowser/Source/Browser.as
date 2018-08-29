@@ -536,7 +536,7 @@ class visorFreeMind.Browser {
 		else
 			node.ref_mc._y=incy;
 			
-		//for solving diferent fonts sizes
+		//for solving different font sizes
 		incy=Math.max(incy,node.ref_mc._y+node.ref_mc._height); 
 
 		node.ref_mc._visible=true;

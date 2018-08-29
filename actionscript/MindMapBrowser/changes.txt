@@ -9,6 +9,6 @@ Major Changes to the original are the following:
 	- New Node-Types are set as Attributes of the Node-Element of the XML:
 		- Web-Link:  Opens another Website (Attribute WEBLINK)
 		- Wiki-Link: Opens the Wiki and points to the specific topic (Attribute WIKILINK
-		- MindMap-Link: Brings a node to the center (works via a url to the html, where the browser is embeded) (Attribute MMLINK)
+		- MindMap-Link: Brings a node to the center (works via a url to the html, where the browser is embedded) (Attribute MMLINK)
 	- The browser was optimized to be as small and light as possible. Therefore feautres were reduced to the necessary minimum.
 	- There is no guarantee that original .mm Files can still be interpreted
